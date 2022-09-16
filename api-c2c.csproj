@@ -270,8 +270,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DbConnection\LibraryContext.cs" />
-    <Compile Include="DbModels\Book.cs" />
+    <Compile Include="DbModels\Deliveries.cs" />
+    <Compile Include="DbModels\Estados.cs" />
+    <Compile Include="DbModels\ItemFamily.cs" />
+    <Compile Include="DbModels\Order.cs" />
+    <Compile Include="DbModels\OrderDetail.cs" />
+    <Compile Include="DbModels\Payment.cs" />
     <Compile Include="DbModels\Permissions.cs" />
+    <Compile Include="DbModels\Products.cs" />
     <Compile Include="DbModels\Roles.cs" />
     <Compile Include="DbModels\Users.cs" />
     <Compile Include="Global.asax.cs">

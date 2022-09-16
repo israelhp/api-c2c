@@ -10,10 +10,18 @@ namespace api_c2c.DbConnection
 {
     public class LibraryContext : DbContext 
     {
-        public DbSet<Book> Book { get; set; }
-
-        public DbSet<Publisher> Publisher { get; set; }
-
+        #region Entidades
+        public DbSet<Deliveries> Deliveries { get; set; }
+        public DbSet<Estados> Estados { get; set; }
+        public DbSet<ItemFamily> ItemFamilies { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Permissions> Permissions { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+        public DbSet<Users> Users { get; set; }
+        #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,21 +37,21 @@ namespace api_c2c.DbConnection
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Publisher>(entity =>
-            {
-                entity.HasKey(e => e.ID);
-                entity.Property(e => e.Name).IsRequired();
-            });
+            //modelBuilder.Entity<Publisher>(entity =>
+            //{
+            //    entity.HasKey(e => e.ID);
+            //    entity.Property(e => e.Name).IsRequired();
+            //});
 
-            modelBuilder.Entity<Book>(entity =>
-            {
-                entity.HasKey(e => e.ISBN);
-                entity.Property(e => e.Title).IsRequired();
-                entity.HasOne(d => d.Publisher)
-                .WithMany(p => p.Books);
-            });
+            //modelBuilder.Entity<Book>(entity =>
+            //{
+            //    entity.HasKey(e => e.ISBN);
+            //    entity.Property(e => e.Title).IsRequired();
+            //    entity.HasOne(d => d.Publisher)
+            //    .WithMany(p => p.Books);
+            //});
 
-            modelBuilder.Entity<Users>();
+            //modelBuilder.Entity<Users>();
         }
     }
 }
