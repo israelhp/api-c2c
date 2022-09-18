@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace api_c2c.Controllers
@@ -14,10 +15,14 @@ namespace api_c2c.Controllers
     {
         public ActionResult Index()
         {
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new System.Net.Http.Formatting.RequestHeaderMapping(
+                            "Accept",
+                              "text/html",
+                              StringComparison.InvariantCultureIgnoreCase,
+                              true,
+                              "application/json"));
             InsertData();
             //PrintData();
-
-
 
             ViewBag.Title = "Home Page";
 
@@ -31,34 +36,84 @@ namespace api_c2c.Controllers
                 // Creates the database if not exists
                 context.Database.EnsureCreated();
 
-                //// Adds a publisher
-                //var publisher = new Publisher
-                //{
-                //    Name = "Mariner Books"
-                //};
-                //context.Publisher.Add(publisher);
+                var itemFamily = new ItemFamily
+                {
+                    name = "Hamburgesas"
+                };
+                context.ItemFamilies.Add(itemFamily);
 
-                //// Adds some books
-                //context.Book.Add(new Book
-                //{
-                //    ISBN = "978-0544003415",
-                //    Title = "The Lord of the Rings",
-                //    Author = "J.R.R. Tolkien",
-                //    Language = "English",
-                //    Pages = 1216,
-                //    Publisher = publisher
-                //});
-                //context.Book.Add(new Book
-                //{
-                //    ISBN = "978-0547247762",
-                //    Title = "The Sealed Letter",
-                //    Author = "Emma Donoghue",
-                //    Language = "English",
-                //    Pages = 416,
-                //    Publisher = publisher
-                //});
+                var itemFamily2 = new ItemFamily
+                {
+                    name = "Pizzas"
+                };
+                context.ItemFamilies.Add(itemFamily2);
 
-                // Saves changes
+                // Add Product Hamburguesa
+                context.Products.Add(new Products
+                {
+                    name = "Hamburguesa",
+                    salePrice = 40.20,
+                    available = true,
+                    description = "Pan con ajonjoli, tomate, carne, lechuga, ketchup, mostaza, mayonesa y cebolla",
+                    itemFamily = itemFamily
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Hamburguesa",
+                    salePrice = 40.20,
+                    available = true,
+                    description = "Pan con ajonjoli, tomate, carne, lechuga, ketchup, mostaza, mayonesa y cebolla",
+                    itemFamily = itemFamily
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Hamburguesa",
+                    salePrice = 40.20,
+                    available = true,
+                    description = "Pan con ajonjoli, tomate, carne, lechuga, ketchup, mostaza, mayonesa y cebolla",
+                    itemFamily = itemFamily
+                });
+
+                // Add Product Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+
+
+                //// Saves changes
                 context.SaveChanges();
             }
         }
