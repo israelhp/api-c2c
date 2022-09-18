@@ -52,6 +52,12 @@ namespace api_c2c.DbConnection
             //});
 
             //modelBuilder.Entity<Users>();
+
+            //modelBuilder.Entity<Products>(entity =>
+            //{
+            //    entity.HasKey(e => e.id);
+            //    entity.HasOne(d => d.itemFamily);
+            //});
         }
     }
 }

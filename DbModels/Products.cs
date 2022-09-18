@@ -9,7 +9,7 @@ namespace api_c2c.DbModels
     {
         public int id {get;set;}
         public string name {get;set;}
-        public decimal salePrice {get;set;}
+        public double salePrice {get;set;}
         public bool available { get;set;}
         public string description { get; set; }
         public ItemFamily itemFamily { get; set; }
