@@ -112,6 +112,14 @@ namespace api_c2c.Controllers
                     itemFamily = itemFamily2
                 });
 
+                context.Roles.Add(new Roles
+                {
+                    name = "CLIENTE"
+                });
+                context.Roles.Add(new Roles
+                {
+                    name = "REPARTIDOR"
+                });
 
                 //// Saves changes
                 context.SaveChanges();

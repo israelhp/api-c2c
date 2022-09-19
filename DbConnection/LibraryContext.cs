@@ -37,6 +37,15 @@ namespace api_c2c.DbConnection
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Roles>().HasIndex(b => b.name).IsUnique();
+            modelBuilder.Entity<Users>(entity =>
+            {
+                entity.HasIndex(b => b.email).IsUnique();
+                entity.HasIndex(b => b.nit).IsUnique();
+                entity.HasIndex(b => b.username).IsUnique();
+                entity.HasIndex(b => b.email).IsUnique();
+            });
+
             //modelBuilder.Entity<Publisher>(entity =>
             //{
             //    entity.HasKey(e => e.ID);
