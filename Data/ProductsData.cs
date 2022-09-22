@@ -28,19 +28,19 @@ namespace api_c2c.Data
             }
         }
 
-        public static ICollection<Products> ProductsListbyid(string field, int quantity, int multiplier)
+        public static ICollection<Products> ProductsListbyid(string field, int quantity, int page)
         {
             using (var context = new LibraryContext())
             {
-                var product = context.Products.OrderBy(id => id.id).Skip((multiplier - 1) * quantity).Take(quantity).ToList();
+                var product = context.Products.OrderBy(id => id.id).Skip((page - 1) * quantity).Take(quantity).ToList();
 
                 switch (field)
                 {
                     case "id":
-                        product = context.Products.OrderBy(id => id.id).Skip((multiplier - 1) * quantity).Take(quantity).ToList();
+                        product = context.Products.OrderBy(id => id.id).Skip((page - 1) * quantity).Take(quantity).ToList();
                         break;
                     case "name":
-                        product = context.Products.OrderBy(id => id.name).Skip((multiplier - 1) * quantity).Take(quantity).ToList();
+                        product = context.Products.OrderBy(id => id.name).Skip((page - 1) * quantity).Take(quantity).ToList();
                         break;
                 }
                 return product;
@@ -58,5 +58,28 @@ namespace api_c2c.Data
             }
         }
 
+        internal static dynamic delete(int id)
+        {
+            using (var context = new LibraryContext())
+            {
+                // remove Product Hamburguesa
+                context.Products.Remove(context.Products.Find(id));
+                // Saves changes
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        internal static dynamic Update(Products value)
+        {
+            using (var context = new LibraryContext())
+            {
+                // remove Product Hamburguesa
+                context.Products.Update(value);
+                // Saves changes
+                context.SaveChanges();
+                return context.Products.Find(value.id);
+            }
+        }
     }
 }

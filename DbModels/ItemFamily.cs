@@ -9,5 +9,6 @@ namespace api_c2c.DbModels
     {
         public int id { get; set; }
         public string name { get; set; }
+        public ICollection<Products> Products { get; set; }
     }
 }
