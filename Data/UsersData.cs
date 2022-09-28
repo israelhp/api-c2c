@@ -18,6 +18,24 @@ namespace api_c2c.Data
             }
         }
 
+        public static Users UserByEmail(string email)
+        {
+            using (var context = new LibraryContext())
+            {
+                var user = context.Users.Where(x => x.email == email).Single(); 
+                return user;
+            }
+        }
+
+        public static Users UserByToken(string token)
+        {
+            using (var context = new LibraryContext())
+            {
+                var user = context.Users.Where(x => x.token == token).Single();
+                return user;
+            }
+        }
+
         public static Users UserList(int id)
         {
             using (var context = new LibraryContext())
@@ -27,6 +45,22 @@ namespace api_c2c.Data
             }
         }
 
+        public static bool UpdateUser(Users aux)
+        {
+            using (var context = new LibraryContext())
+            {
+                try
+                {
+                    context.Users.Update(aux);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }                
+            }
+        }
         internal static void add(Users value)
         {
             using (var context = new LibraryContext())
