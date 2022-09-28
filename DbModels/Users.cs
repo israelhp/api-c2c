@@ -19,6 +19,7 @@ namespace api_c2c.DbModels
         public string address { get; set; }
         public string nit { get; set; }
         public bool isVerification { get; set; }
+        public string tokenResetPassword { get; set; }
         public string token { get; set; }
 
         [ForeignKey("Standard")]
