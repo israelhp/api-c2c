@@ -307,10 +307,12 @@
     <Compile Include="Controllers\DeliveriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\CatalogsData.cs" />
+    <Compile Include="Data\PaymentsData.cs" />
     <Compile Include="Data\DeliveriesData.cs" />
     <Compile Include="Data\OrdersData.cs" />
     <Compile Include="Data\ProductsData.cs" />
