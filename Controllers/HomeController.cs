@@ -21,7 +21,7 @@ namespace api_c2c.Controllers
                               StringComparison.InvariantCultureIgnoreCase,
                               true,
                               "application/json"));
-            InsertData();
+            //InsertData();
 
             ViewBag.Title = "Home Page";
 
@@ -73,6 +73,154 @@ namespace api_c2c.Controllers
                     itemFamily = itemFamily
                 });
 
+                // Add Product Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                // Add Product Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                // Add Product Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                // Add Product Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
+                context.Products.Add(new Products
+                {
+                    name = "Pizza Peperoni",
+                    salePrice = 40.00,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y peperoni",
+                    itemFamily = itemFamily2
+                });
+
+                // Add Product Another Pizza
+                context.Products.Add(new Products
+                {
+                    name = "Pizza salami",
+                    salePrice = 45.75,
+                    available = true,
+                    description = "Pan pizza con queso, salsa de tomate y Salami",
+                    itemFamily = itemFamily2
+                });
                 // Add Product Pizza
                 context.Products.Add(new Products
                 {
