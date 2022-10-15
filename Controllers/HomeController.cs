@@ -21,7 +21,7 @@ namespace api_c2c.Controllers
                               StringComparison.InvariantCultureIgnoreCase,
                               true,
                               "application/json"));
-            //InsertData();
+            InsertData();
 
             ViewBag.Title = "Home Page";
 

@@ -22,7 +22,7 @@ namespace api_c2c.Data
             {
                 context.Orders.Add(value);
                 context.SaveChanges();
-                return true;
+                return value;
             }
         }
 

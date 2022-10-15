@@ -46,6 +46,13 @@ namespace api_c2c.DbConnection
                 entity.HasIndex(b => b.email).IsUnique();
             });
 
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.HasKey(e => e.id);
+                entity.HasOne(d => d.order)
+                .WithMany(p => p.OrderDetails);
+            });
+
             //modelBuilder.Entity<Publisher>(entity =>
             //{
             //    entity.HasKey(e => e.ID);
