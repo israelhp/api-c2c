@@ -29,7 +29,7 @@ namespace api_c2c.Controllers
             {
                 user.token = Utilities.JwtServices.GenerateSecurityToken(user.email);
                 UsersData.UpdateUser(user);
-                return Request.CreateResponse(HttpStatusCode.Created, new Utilities.FormatResponse(new { username = user.username, token = user.token, role = user.RolesId }, "Inicio sesion correctamente", null));
+                return Request.CreateResponse(HttpStatusCode.Created, new Utilities.FormatResponse(new { username = user.username, token = user.token, role = user.RolesId, userId= user.id}, "Inicio sesion correctamente", null));
             }
 
             return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "El correo / contraseña es invalido", null));
