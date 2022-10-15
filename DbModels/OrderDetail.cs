@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Web;
 
 namespace api_c2c.DbModels
@@ -19,10 +20,11 @@ namespace api_c2c.DbModels
 
         [ForeignKey("Standard")]
         public int orderId { get; set; }
-        public Order order { get; set; }
+        [JsonIgnore]
+        public virtual Order order { get; set; }
 
         [ForeignKey("Standard")]
         public int productId { get; set; }
-        public Products product { get; set; }
+        public virtual Products product { get; set; }
     }
 }
