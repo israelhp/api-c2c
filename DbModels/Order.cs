@@ -14,17 +14,19 @@ namespace api_c2c.DbModels
         public string name { get; set; }
         public string observations { get; set; }
         public DateTime date { get; set; }
-
+        public double total { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-
 
         [ForeignKey("Standard")]
         public int PaymentId { get; set; }
         public Payment Payment { get; set; }
 
         [ForeignKey("Standard")]
+        public int EstadoId { get; set; }
+        public Estados Estado { get; set; }
+
+        [ForeignKey("Standard")]
         public int userId { get; set; }
         public Users user { get; set; }
-
     }
 }
