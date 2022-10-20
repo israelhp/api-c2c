@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api-c2c", "api-c2c.csproj", "{BA0BC77C-C533-45BB-A9B5-0C0D17D15AA0}"
 EndProject
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B69B66DC-85B4-407E-9E76-CF6F4B0ABFFE}
+		SolutionGuid = {B0C42F88-CBAC-4FE6-A05D-46BB07CFE9DE}
 	EndGlobalSection
 EndGlobal

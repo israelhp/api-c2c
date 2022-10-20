@@ -16,6 +16,15 @@ namespace api_c2c.Data
             }
         }
 
+        public static dynamic OrdersList(int userId)
+        {
+            using (var context = new LibraryContext())
+            {
+                var Orders = context.Orders.Where(w => w.userId == userId).ToList();
+                return Orders;
+            }
+        }
+
         internal static dynamic Add(Order value)
         {
             using (var context = new LibraryContext())
