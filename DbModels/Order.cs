@@ -14,9 +14,8 @@ namespace api_c2c.DbModels
         public string name { get; set; }
         public string observations { get; set; }
         public DateTime date { get; set; }
-
-        public ICollection<OrderDetail> OrderDetails { get; set; }
-
+        public double total { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         [ForeignKey("Standard")]
         public int PaymentId { get; set; }
@@ -24,7 +23,6 @@ namespace api_c2c.DbModels
 
         [ForeignKey("Standard")]
         public int userId { get; set; }
-        public Payment user { get; set; }
-
+        public Users user { get; set; }
     }
 }

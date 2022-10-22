@@ -29,6 +29,78 @@ namespace api_c2c.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/OrdersByUser")]
+        public HttpResponseMessage GetByUSer([FromUri] int userId)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(OrdersData.OrdersList(userId), "Solicitud exitosa!", null));
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Ocurrio un error interno, verifique en la red", e));
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Error de sintaxis interna, comuniquese con su proveedor", e));
+            }
+        }
+
+        [HttpGet]
+        [Route("api/OrdersById")]
+        public HttpResponseMessage GetByOrder([FromUri] int orderId)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(OrdersData.OrderId(orderId), "Solicitud exitosa!", null));
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Ocurrio un error interno, verifique en la red", e));
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Error de sintaxis interna, comuniquese con su proveedor", e));
+            }
+        }
+
+        [HttpGet]
+        [Route("api/OrderDetailByOrderId")]
+        public HttpResponseMessage OrderDetailByOrderId([FromUri] int orderId)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(OrdersData.DetailOrderById(orderId), "Solicitud exitosa!", null));
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Ocurrio un error interno, verifique en la red", e));
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Error de sintaxis interna, comuniquese con su proveedor", e));
+            }
+        }
+
+        [HttpGet]
+        [Route("api/OrderDetailByUserId")]
+        public HttpResponseMessage OrderDetailByUserId([FromUri] int userId)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(OrdersData.OrderByUserId(userId), "Solicitud exitosa!", null));
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Ocurrio un error interno, verifique en la red", e));
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Error de sintaxis interna, comuniquese con su proveedor", e));
+            }
+        }
+
         [HttpPost]
         [Route("api/Orders")]
         public HttpResponseMessage Post([FromBody] Order value)

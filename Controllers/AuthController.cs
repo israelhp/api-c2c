@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.Web.Http.Cors;
 using System.Net.Mail;
+using Microsoft.EntityFrameworkCore;
 
 namespace api_c2c.Controllers
 {
@@ -20,26 +21,33 @@ namespace api_c2c.Controllers
 
         [HttpPost]
         [Route("api/Auth")]
-        public HttpResponseMessage Post(Models.Request.LoginRequest datalogin) 
+        public HttpResponseMessage Post(Models.Request.LoginRequest datalogin)
         {
-            Users user = UsersData.UserByEmail(datalogin.email);
-            string token;
-
-            if (BCrypt.Net.BCrypt.Verify(datalogin.password, user.password))
+            try
             {
-                user.token = Utilities.JwtServices.GenerateSecurityToken(user.email);
-                UsersData.UpdateUser(user);
-                return Request.CreateResponse(HttpStatusCode.Created, new Utilities.FormatResponse(new { username = user.username, token = user.token, role = user.RolesId }, "Inicio sesion correctamente", null));
-            }
+                Users user = UsersData.UserByEmail(datalogin.email);
+                string token;
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "El correo / contraseña es invalido", null));
+                if (BCrypt.Net.BCrypt.Verify(datalogin.password, user.password))
+                {
+                    user.token = Utilities.JwtServices.GenerateSecurityToken(user.email);
+                    UsersData.UpdateUser(user);
+                    return Request.CreateResponse(HttpStatusCode.Created, new Utilities.FormatResponse(new { username = user.username, token = user.token, role = user.RolesId, userId = user.id }, "Inicio sesion correctamente", null));
+                }
+
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "El correo / contraseña es invalido", null));
+
+            }
+            catch (DbUpdateException) { return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "El correo / contraseña es invalido", null)); }
+            catch (Exception) { return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "El correo / contraseña es invalido", null)); }            
         }
 
         [HttpPost]
         [Route("api/Auth/Logout")]
         public HttpResponseMessage Logout()
         {
-            try { 
+            try
+            {
                 if (!Utilities.JwtServices.isAuthenticated(Request.Headers.Authorization.Parameter))
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "No tienes acceso a esta pagina", null));
 
@@ -49,7 +57,7 @@ namespace api_c2c.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Ocurrio un error, intenta nuevamente", null));
                 return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(null, "Se cerrar sesión correctamente", null));
             }
-            catch(System.NullReferenceException e)
+            catch (System.NullReferenceException e)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "No se pudo cerrar sesion correctamente", null));
             }
@@ -57,7 +65,7 @@ namespace api_c2c.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "No se pudo cerrar sesion correctamente", null));
             }
-            
+
         }
 
         [HttpPost]
@@ -71,9 +79,9 @@ namespace api_c2c.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "No existe un usuario con ese correo", null));
                 user.tokenResetPassword = Utilities.GeneratePassword.GenerateRandomPassword();
                 Utilities.SendMail
-                    .Send(user.email, 
+                    .Send(user.email,
                           "Cambio de Contraseña",
-                          "Este es el token "+user.tokenResetPassword +" para poder realizar el cambio de contraseña. Saludos",
+                          "Este es el token " + user.tokenResetPassword + " para poder realizar el cambio de contraseña. Saludos",
                           "Proyecto Seminario"
                           );
                 UsersData.UpdateUser(user);
@@ -99,7 +107,7 @@ namespace api_c2c.Controllers
 
                 user.tokenResetPassword = null;
                 UsersData.UpdateUser(user);
-                return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(new { isValidate = true} , "Se valido correctamente", null));
+                return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(new { isValidate = true }, "Se valido correctamente", null));
             }
             catch (Exception e)
             {
@@ -114,7 +122,7 @@ namespace api_c2c.Controllers
             try
             {
                 Users user = UsersData.UserByEmail(data.email);
-                if(user == null)
+                if (user == null)
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "No existe un usuario con ese correo", null));
 
                 user.password = BCrypt.Net.BCrypt.HashPassword(data.password);
@@ -122,7 +130,7 @@ namespace api_c2c.Controllers
                 Utilities.SendMail
                     .Send(user.email,
                           "Se a cambiado tu contraseña",
-                          "Tu contraseña actual es " + user.password+ ". Saludos",
+                          "Tu contraseña actual es " + user.password + ". Saludos",
                           "Proyecto Seminario"
                           );
                 return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(data, "Se actualizo tu contraseña correctamente", null));
@@ -132,6 +140,6 @@ namespace api_c2c.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new Utilities.FormatResponse(null, "Ocurrio un error, intenta nuevamente", e));
             }
         }
-        
+
     }
 }
