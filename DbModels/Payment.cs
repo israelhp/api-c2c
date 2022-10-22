@@ -10,7 +10,7 @@ namespace api_c2c.DbModels
         public int id { get; set; }
         public string name { get; set; }
         public long card { get; set; }
-        public int codeCard { get; set; }
+        public int codCard { get; set; }
         public string securityCode { get; set; }
         public string expirationDate { get; set; }
         public double amount { get; set; }

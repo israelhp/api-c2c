@@ -16,6 +16,41 @@ namespace api_c2c.Data
             }
         }
 
+        public static dynamic DeliveriesDefault(int idUser, int statusId)
+        {
+            using (var context = new LibraryContext())
+            {
+                var orders = (from d in context.Deliveries
+                              join o in context.Orders
+                              on d.orderId equals o.id
+                              where d.userId == idUser  && d.statusId == statusId
+                              select new
+                              {
+                                  id = o.id,
+                                  currency= o.currency,
+                                  nit = o.nit,
+                                  name = o.name,
+                                  observations= o.observations,
+                                  date = o.date,
+                                  total = o.total,
+                                  PaymentId = o.PaymentId,
+                                  userId = o.userId,
+                                  idDelivery = d.id,
+                                  estado = d.statusId
+                              }).ToList();
+                return orders;
+            }
+        }
+
+        public static dynamic OrderId(int id)
+        {
+            using (var context = new LibraryContext())
+            {
+                var order = context.Deliveries.Where(w => w.orderId == id).Single();
+                return order;
+            }
+        }
+
         internal static dynamic Add(Deliveries value)
         {
             using (var context = new LibraryContext())
