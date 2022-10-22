@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using api_c2c.DbConnection;
 using api_c2c.DbModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace api_c2c.Data
 {
@@ -65,10 +66,14 @@ namespace api_c2c.Data
         {
             using (var context = new LibraryContext())
             {
-                // Add Product Hamburguesa
-                context.Users.Add(value);
-                // Saves changes
-                context.SaveChanges();
+                try
+                {
+                    // Add Product Hamburguesa
+                    context.Users.Add(value);
+                    // Saves changes
+                    context.SaveChanges();
+                }
+                catch (DbUpdateException) { }
             }
         }
     }

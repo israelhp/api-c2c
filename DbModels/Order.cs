@@ -21,10 +21,6 @@ namespace api_c2c.DbModels
         public int PaymentId { get; set; }
         public Payment Payment { get; set; }
 
-        // [ForeignKey("Standard")]
-        // public int EstadoId { get; set; }
-        // public Estados Estado { get; set; }
-
         [ForeignKey("Standard")]
         public int userId { get; set; }
         public Users user { get; set; }

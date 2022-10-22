@@ -10,6 +10,7 @@ namespace api_c2c.DbModels
     {
         public int id {get;set;}
         public string name {get;set;}
+        public byte[] Image { get; set; }
         public double salePrice {get;set;}
         public bool available { get;set;}
         public string description { get; set; }
