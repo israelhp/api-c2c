@@ -21,6 +21,12 @@ namespace api_c2c.Controllers
             {
                 value.password = BCrypt.Net.BCrypt.HashPassword(value.password);
                 UsersData.add(value);
+                Utilities.SendMail
+                    .Send(value.email,
+                          "Creacion de usuario ",
+                          "Tu usuario " + value.username + " fue creado correctamente",
+                          "Proyecto Seminario"
+                          );
                 return Request.CreateResponse(HttpStatusCode.OK, new Utilities.FormatResponse(new { username= value.username, email = value.email , role = value.RolesId }, "Usuario se registro correctamente, ya puedes iniciar sesion!", null));
             }
             catch (Microsoft.EntityFrameworkCore.DbUpdateException e) {

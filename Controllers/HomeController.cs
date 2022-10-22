@@ -193,7 +193,40 @@ namespace api_c2c.Controllers
                     name = "REPARTIDOR"
                 });
 
+
                 // Saves changes
+
+                context.Estados.Add(new Estados
+                {
+                    description = "INGRESADO"
+                });
+                context.Estados.Add(new Estados
+                {
+                    description = "ASIGNADO"
+                });
+                context.Estados.Add(new Estados
+                {
+                    description = "PREPARANDO"
+                });
+                context.Estados.Add(new Estados
+                {
+                    description = "EN CAMINO"
+                });
+                context.Estados.Add(new Estados
+                {
+                    description = "ENTREGADO"
+                });
+
+                context.Users.Add(new Users
+                {
+                    username = "default",
+                    password = "24320281",
+                    email = "default@gmail.com",
+                    dpi = "0000000000000",
+                    RolesId = 1
+                });
+                //// Saves changes
+
                 context.SaveChanges();
             }
         }
