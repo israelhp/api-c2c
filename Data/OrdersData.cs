@@ -24,6 +24,55 @@ namespace api_c2c.Data
                 return Orders;
             }
         }
+        public static dynamic OrderId(int id)
+        {
+            using (var context = new LibraryContext())
+            {
+                var order = context.Orders.Where(w => w.id == id).Single();
+                return order;
+            }
+        }
+
+        public static dynamic DetailOrderById(int orderId)
+        {
+            using (var context = new LibraryContext())
+            {
+                var orders = (from o in context.OrderDetails
+                              join p in context.Products
+                              on o.productId equals p.id
+                              where o.orderId == orderId
+                              select new 
+                              { 
+                                  name = p.name,
+                                  price = o.price,
+                                  amount = o.amount,
+                                  total = o.lineTotal,
+                                  key = o.LineNumber
+                              }).ToList();
+                return orders;
+            }
+        }
+
+        public static dynamic OrderByUserId(int userId)
+        {
+            using (var context = new LibraryContext())
+            {
+                var orders = (from o in context.Orders
+                              join d in context.Deliveries
+                              on o.id equals d.orderId
+                              where o.userId == userId
+                              select new
+                              {
+                                  id = o.id,
+                                  nit = o.nit,
+                                  name = o.name,
+                                  date = o.date,
+                                  estado = d.statusId
+
+                              }).OrderByDescending(x => x.id).ToList();
+                return orders;
+            }
+        }
 
         internal static dynamic Add(Order value)
         {
